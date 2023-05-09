@@ -6,9 +6,9 @@
                     <div class="left-text-content">
                         <div class="section-heading">
                             <h6>Contact Us</h6>
-                            <h2>Here You Can Make A Reservation Or Just walkin to our cafe</h2>
+                            <h2>Here You Can Make A Reservation Or Just walkin to our restaurant</h2>
                         </div>
-                        <p>Donec pretium est orci, non vulputate arcu hendrerit a. Fusce a eleifend riqsie, namei sollicitudin urna diam, sed commodo purus porta ut.</p>
+                        <p>Contact Here!</p>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="phone">
@@ -21,7 +21,7 @@
                                 <div class="message">
                                     <i class="fa fa-envelope"></i>
                                     <h4>Emails</h4>
-                                    <span><a href="#">hello@company.com</a><br><a href="#">info@company.com</a></span>
+                                    <span><a href="#">grestaurant@company.com</a><br><a href="#">starrest@company.com</a></span>
                                 </div>
                             </div>
                         </div>

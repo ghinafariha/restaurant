@@ -2,6 +2,7 @@
 <html lang="en">
 
   <head>
+    <base href="/public">
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,6 +29,7 @@ https://templatemo.com/tm-558-klassy-cafe
     <link rel="stylesheet" href="assets/css/owl-carousel.css">
 
     <link rel="stylesheet" href="assets/css/lightbox.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     </head>
     
@@ -51,11 +53,6 @@ https://templatemo.com/tm-558-klassy-cafe
                 <div class="col-12">
                     <nav class="main-nav">
                         
-
-
-                    <a href="" class="menu-trigger">
-                        <span>Menu</span>
-                    </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
@@ -117,7 +114,7 @@ https://templatemo.com/tm-558-klassy-cafe
 
                         <x-app-layout>
 
-</x-app-layout>
+                        </x-app-layout>
 
 
                         </li>
@@ -142,126 +139,95 @@ https://templatemo.com/tm-558-klassy-cafe
             </div>
         </div>
     </header>
-    <!-- ***** Header Area End ***** -->
 
-    <!-- ***** Main Banner Area Start ***** -->
+
     <div id="top">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="left-content">
-                        <div class="inner-content">
-                            <h4>G's Restaurant</h4>
-                            <h6>THE BEST FOOD MAKER</h6>
-                            <div class="main-white-button scroll-to-section">
-                                <a href="#reservation">Make A Reservation</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="main-banner header-text">
-                        <div class="Modern-Slider">
-                          <!-- Item -->
-                          <div class="item">
-                            <div class="img-fill">
-                                <img src="assets/images/slide-01.jpg" alt="">
-                            </div>
-                          </div>
-                          <!-- // Item -->
-                          <!-- Item -->
-                          <div class="item">
-                            <div class="img-fill">
-                                <img src="assets/images/slide-02.jpg" alt="">
-                            </div>
-                          </div>
-                          <!-- // Item -->
-                          <!-- Item -->
-                          <div class="item">
-                            <div class="img-fill">
-                                <img src="assets/images/slide-03.jpg" alt="">
-                            </div>
-                          </div>
-                          <!-- // Item -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ***** Main Banner Area End ***** -->
+    <table align="center" bgcolor="FCFFB2">
+                <tr>
+                    <th style="padding: 30px">Food Menu</th>
+                    <th style="padding: 30px">Price</th>
+                    <th style="padding: 30px">Quantity</th>
+                    <th style="padding: 30px">Action</th>
+                
+                </tr>
 
-    <!-- ***** About Area Starts ***** -->
-    <section class="section" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <div class="left-text-content">
-                        <div class="section-heading">
-                            <h6>About Us</h6>
-                            <h2>We Leave A Delicious Memory For You</h2>
-                        </div>
-                        <p>One of the best <a href="https://templatemo.com/tag/restaurant" target="_blank" rel="sponsored"></a>Restaurants can range from casual fast-food chains to fine-dining establishments. The menu offerings and ambiance of a restaurant may vary depending on the cuisine, price range, and target audience.</p>
-                        <div class="row">
-                            <div class="col-4">
-                        
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-xs-12">
-                    <div class="right-content">
-                        <div class="thumb">
-                            <a rel="nofollow" href="http://youtube.com"><i class="fa fa-play"></i></a>
-                            <img src="assets/images/about-video-bg.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ***** About Area Ends ***** -->
+<form action="{{url('/orderconfirm')}}" method="POST">
+    @csrf
+                @foreach ($data as $data)
+                <tr align="center">
+                    <td>
+                    <input type="text" name="foodname[]" value="{{$data->title}}" hidden="">
+                    {{$data->title}}</td>
+                    <td>
+                    <input type="text" name="price[]" value="{{$data->price}}" hidden="">  
+                    {{$data->price}}</td>
+                    <td>
+                    <input type="text" name="quantity[]" value="{{$data->quantity}}" hidden="">
+                    {{$data->quantity}}</td>
+                </tr>
+                    
+                @endforeach
 
-   @include("food")
+                @foreach ($data2 as $data2)
+                <tr style="position: relative; top: -60px; right: -360px;">
+                <td><a href="{{url('/remove',$data2->id)}}" class="btn btn-warning">Remove</a></td>
+                </tr>
+                @endforeach
+</table>
 
-    @include("foodchef")
 
-   @include("reservation")
 
-    <!-- ***** Menu Area Starts ***** -->
+<div align="center" style="padding: 10px;">
+<button class="btn btn-primary" type="button" id="order">Order Now</button>
+</div>
 
-    <!-- ***** Chefs Area Ends ***** --> 
+<div id="appear" align="center" style="padding: 10px; display: none;">
+
+    <div style="padding: 10px;">
+    <label>Name</label>
+    <input type="text" name="name" placeholder="Name">
+</div>
+
+<div>
+    <div style="padding: 10px;">
+    <label>Phone</label>
+    <input type="number" name="phone" placeholder="Phone Number">
+</div>
+
+<div>
+    <div style="padding: 10px;">
+    <label>Address</label>
+    <input type="text" name="address" placeholder="Address">
+</div>
+
+<div>
+    <div style="padding: 10px;">
+    <input class="btn btn-success" type="submit" value="Order Confirm">
+    <button id="close" type="button" class="btn btn-danger">Close</button>
+</div>
+</div>
+</form>
+
+
+
+<script type="text/javascript">
+    $("#order").click(
+        function()
+        {
+            $("#appear").show();
+        }
+    );
+
+     $("#close").click(
+        function()
+        {
+            $("#appear").hide();
+        }
+    );
+    </script>
+
+
     
-    <!-- ***** Footer Start ***** -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-xs-12">
-                    <div class="right-text-content">
-                            <ul class="social-icons">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="logo">
-                        <a href="index.html"><img src="assets/images/white-logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xs-12">
-                    <div class="left-text-content">
-                        <p>© Copyright Klassy Cafe Co.
-                        
-                        <br>Design: TemplateMo</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <!-- jQuery -->
     <script src="assets/js/jquery-2.1.0.min.js"></script>
 
